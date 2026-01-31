@@ -11,7 +11,11 @@ fn process_imperative(data: &Vec<i32>) -> i32 {
 }
 
 fn process_functional(data: &Vec<i32>) -> i32 {
-    data.iter().filter(|x| **x >= 0).map(|x| x.pow(2)).sum()
+    data.iter()
+        .cloned()
+        .filter(|x| *x >= 0)
+        .map(|x| x.pow(2))
+        .sum()
 }
 
 fn main() {
