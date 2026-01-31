@@ -2,24 +2,24 @@
 
 enum Expr {
     Value(f64),
-    Add(Box<Expr>, String, Box<Expr>),
-    Mul(Box<Expr>, String, Box<Expr>),
+    Add(Box<Expr>, Box<Expr>),
+    Mul(Box<Expr>, Box<Expr>),
 }
 
 fn print_expr(e: &Expr) {
     match e {
         Expr::Value(v) => print!("{}", v),
-        Expr::Add(left, op, right) => {
+        Expr::Add(left, right) => {
             print!("(");
             print_expr(&left);
-            print!(" {} ", op);
+            print!(" + ");
             print_expr(&right);
             print!(")");
         }
-        Expr::Mul(left, op, right) => {
+        Expr::Mul(left, right) => {
             print!("(");
             print_expr(&left);
-            print!(" {} ", op);
+            print!(" * ");
             print_expr(&right);
             print!(")");
         }
@@ -29,10 +29,8 @@ fn print_expr(e: &Expr) {
 fn main() {
     let expression = Expr::Add(
         Box::new(Expr::Value(5.0)),
-        String::from("+"),
         Box::new(Expr::Mul(
             Box::new(Expr::Value(10.0)),
-            String::from("*"),
             Box::new(Expr::Value(2.0)),
         )),
     );
