@@ -31,6 +31,7 @@ impl Graph for CityGraph {
     }
 }
 
+// Dynamically building a graph using implemented init function and then describing it.
 fn build_and_describe<G: Graph>(n: G::Node, e: G::Edge) {
     G::init(n, e).describe();
 }
