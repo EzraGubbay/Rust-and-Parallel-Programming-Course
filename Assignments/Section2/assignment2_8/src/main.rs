@@ -23,7 +23,7 @@ struct User {
 
 impl Serialize for User {
     fn to_json(&self) -> String {
-        return format!("{{ \"name\": \"{}\", \"age\": \"{}\", }}", self.name, self.age);
+        format!("{{ {}, {} }}", self.name.to_json(), self.age)
     }
 }
 
